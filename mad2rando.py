@@ -6,7 +6,7 @@ import logging
 seed = 0
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler('spoiler.log')
+file_handler = logging.FileHandler('spoiler.log', mode='w')
 file_handler.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 
@@ -17,14 +17,10 @@ levels = ["animal_chess", "BraveNewWild", "Card_Match_Game", "ConvoyChase", "Cre
 "golf_targetTree", "HungryHippo", "IslandFever", "MartyRace", "Minigame_Diving_Location_Menu", "Minigame_HotDurian", \
 "Morts_Adventure", "penguins", "penguins2", "Prepare2Launch_Plane", "Prepare2Launch", "RitesOfPassage", "RoP_MusicalChairs", \
 "Soccer", "VolcanoRave", "Watercaves", "Waterhole", "Wooing_Gloria"]
+manualoverrides = ["map", "title", "global"]
 
-levelscopied = ["animal_chess", "BraveNewWild", "Card_Match_Game", "ConvoyChase", "Credits", "Dam_Busters", "DivingLocation_IslandFever", \
-"DivingLocation_PrepareToLaunch", "DivingLocation_RitesOfPassage", "DivingLocation_Waterhole", "DrMelman", "DutyFree", \
-"FixThePlane", "golf_3holes", "golf_baggagecheck", "golf_cake", "golf_cratercrossing", "golf_crossedpaths", \
-"golf_foosaBall", "golf_junkyard", "golf_lovelylumps", "golf_maze", "Golf_minigame", "golf_ravenousRhinos", \
-"golf_targetTree", "HungryHippo", "IslandFever", "MartyRace", "Minigame_Diving_Location_Menu", "Minigame_HotDurian", \
-"Morts_Adventure", "penguins", "penguins2", "Prepare2Launch_Plane", "Prepare2Launch", "RitesOfPassage", "RoP_MusicalChairs", \
-"Soccer", "VolcanoRave", "Watercaves", "Waterhole", "Wooing_Gloria"]
+levelscopied = []
+levelscopied.extend(levels)
 
 if os.path.isdir('Content') == False:
 	quit()
@@ -40,13 +36,11 @@ for level in levels:
 	x = random.randrange(0, len(levelscopied))
 	shutil.copy('ContentOG/Streams/win/'+level+'.arc', 'Content/Streams/win/'+levelscopied[x]+'.arc')
 	shutil.copy('ContentOG/Streams/win/'+level+'.bld', 'Content/Streams/win/'+levelscopied[x]+'.bld')
-	logger.info('ContentOG/Streams/win/'+level+': Moved to: Content/Streams/win/'+levelscopied[x])
+	logger.info(level+':'+levelscopied[x])
 	levelscopied.pop(x)
 
-shutil.copy('ContentOG/Streams/win/map.arc', 'Content/Streams/win/map.arc')
-shutil.copy('ContentOG/Streams/win/map.bld', 'Content/Streams/win/map.bld')
-shutil.copy('ContentOG/Streams/win/title.arc', 'Content/Streams/win/title.arc')
-shutil.copy('ContentOG/Streams/win/title.bld', 'Content/Streams/win/title.bld')
+for level in manualoverrides:
+	shutil.copy('ContentOG/Streams/win/'+level+'.arc', 'Content/Streams/win/'+level+'.arc')
+	shutil.copy('ContentOG/Streams/win/'+level+'.bld', 'Content/Streams/win/'+level+'.bld')
+
 shutil.copy('ContentOG/Streams/win/MultiplayerTourneyFinish.bld', 'Content/Streams/win/MultiplayerTourneyFinish.bld')
-shutil.copy('ContentOG/Streams/win/global.arc', 'Content/Streams/win/global.arc')
-shutil.copy('ContentOG/Streams/win/global.bld', 'Content/Streams/win/global.bld')
