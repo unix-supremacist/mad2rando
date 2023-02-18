@@ -3,6 +3,8 @@ import os
 import random
 import logging
 
+print("Hey the randomizer is randomizing *cough* xeelium *cough*")
+
 seed = 0
 deadends = False
 #Any minigames including golf can trigger minigame mode
@@ -108,3 +110,5 @@ for level in manualoverrides:
 	shutil.copy(contentog+streams+level+bld, content+streams+level+bld)
 
 shutil.copy(contentog+streams+mptourney+bld, content+streams+mptourney+bld)
+
+print("Game randomized")
