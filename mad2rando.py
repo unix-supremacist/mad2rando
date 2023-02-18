@@ -35,13 +35,13 @@ diving_levels = ["DivingLocation_IslandFever",\
 "DivingLocation_PrepareToLaunch", "DivingLocation_RitesOfPassage",\
 "DivingLocation_Waterhole", "Minigame_Diving_Location_Menu"]
 
-minigame_levels = ["animal_chess", "Card_Match_Game", "DrMelman",\
+minigame_levels = ["animal_chess", "Card_Match_Game",\
 "HungryHippo", "Minigame_HotDurian", "RoP_MusicalChairs",\
 "Soccer"]
 
 deadends_levels = ["Credits", "Dam_Busters", "FixThePlane", "Waterhole"]
 
-levels = ["BraveNewWild", "ConvoyChase", "DutyFree", "IslandFever",\
+levels = ["BraveNewWild", "ConvoyChase", "DrMelman", "DutyFree", "IslandFever",\
 "MartyRace", "Morts_Adventure", "penguins", "penguins2",\
 "Prepare2Launch_Plane", "Prepare2Launch", "RitesOfPassage",\
 "VolcanoRave", "Watercaves", "Wooing_Gloria"]
