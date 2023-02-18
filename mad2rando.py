@@ -5,7 +5,10 @@ import logging
 
 seed = 0
 deadends = False
-randomizeGolf = True
+#Any minigames including golf can trigger minigame mode
+#this makes certain levels impossible to beat
+#if you cant get to them in game mode use with caution
+randomizeGolf = False
 randomizeDiving = False
 randomizeMinigames = False
 content = "Content"
@@ -31,15 +34,17 @@ diving_levels = ["DivingLocation_IslandFever",\
 "DivingLocation_Waterhole", "Minigame_Diving_Location_Menu"]
 
 minigame_levels = ["animal_chess", "Card_Match_Game", "DrMelman",\
-"DutyFree", "HungryHippo", "Minigame_HotDurian", "RoP_MusicalChairs",\
+"HungryHippo", "Minigame_HotDurian", "RoP_MusicalChairs",\
 "Soccer"]
 
 deadends_levels = ["Credits", "Dam_Busters", "FixThePlane", "Waterhole"]
 
-levels = ["BraveNewWild", "ConvoyChase", "IslandFever",\
+levels = ["BraveNewWild", "ConvoyChase", "DutyFree", "IslandFever",\
 "MartyRace", "Morts_Adventure", "penguins", "penguins2",\
 "Prepare2Launch_Plane", "Prepare2Launch", "RitesOfPassage",\
 "VolcanoRave", "Watercaves", "Wooing_Gloria"]
+
+minilevels = []
 
 manualoverrides = ["map", "title", "global"]
 
@@ -53,27 +58,31 @@ else:
 if randomizeGolf == True:
 	levels.extend(golf_levels)
 else:
-	manualoverrides.extend(golf_levels)
+	minilevels.extend(golf_levels)
 
 if randomizeDiving == True:
 	levels.extend(diving_levels)
 else:
-	manualoverrides.extend(diving_levels)
+	minilevels.extend(diving_levels)
 
 if randomizeMinigames == True:
 	levels.extend(minigame_levels)
 else:
-	manualoverrides.extend(minigame_levels)
+	minilevels.extend(minigame_levels)
 
 levels.sort()
 levelscopied = []
 levelscopied.extend(levels)
+minilevels.sort()
+minilevelscopied = []
+minilevelscopied.extend(minilevels)
 
 if os.path.isdir(content) == False:
 	quit()
 
 if os.path.isdir(contentog) == False:
-	shutil.copytree(r"Content", r"ContentOG")
+	print("copy Content to ContentOG")
+	quit()
 
 random.seed(seed)
 
@@ -84,8 +93,15 @@ for level in levels:
 	x = random.randrange(0, len(levelscopied))
 	shutil.copy(contentog+streams+level+arc, content+streams+levelscopied[x]+arc)
 	shutil.copy(contentog+streams+level+bld, content+streams+levelscopied[x]+bld)
-	logger.info(level+':'+levelscopied[x])
+	logger.info('Main Pool Level:'+level+':'+levelscopied[x])
 	levelscopied.pop(x)
+
+for level in minilevels:
+	x = random.randrange(0, len(minilevelscopied))
+	shutil.copy(contentog+streams+level+arc, content+streams+minilevelscopied[x]+arc)
+	shutil.copy(contentog+streams+level+bld, content+streams+minilevelscopied[x]+bld)
+	logger.info('Minigame Pool Level:'+level+':'+minilevelscopied[x])
+	minilevelscopied.pop(x)
 
 for level in manualoverrides:
 	shutil.copy(contentog+streams+level+arc, content+streams+level+arc)
