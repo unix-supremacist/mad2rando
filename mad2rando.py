@@ -4,9 +4,10 @@ import random
 import logging
 
 seed = 0
+deadends = False
 randomizeGolf = True
-randomizeDiving = True
-randomizeMinigames = True
+randomizeDiving = False
+randomizeMinigames = False
 content = "Content"
 contentog = "ContentOG"
 streams = "/Streams/win/"
@@ -19,10 +20,11 @@ file_handler = logging.FileHandler('spoiler.log', mode='w')
 file_handler.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 
-golf_levels = ["golf_3holes", "golf_baggagecheck", "golf_cake",\
+deadends_golf_levels = ["golf_cake", "golf_lovelylumps", "golf_targetTree"]
+golf_levels = ["golf_3holes", "golf_baggagecheck", \
 "golf_cratercrossing", "golf_crossedpaths", "golf_foosaBall",\
-"golf_junkyard", "golf_lovelylumps", "golf_maze",\
-"Golf_minigame", "golf_ravenousRhinos", "golf_targetTree"]
+"golf_junkyard",  "golf_maze",\
+"Golf_minigame", "golf_ravenousRhinos", ]
 
 diving_levels = ["DivingLocation_IslandFever",\
 "DivingLocation_PrepareToLaunch", "DivingLocation_RitesOfPassage",\
@@ -32,13 +34,21 @@ minigame_levels = ["animal_chess", "Card_Match_Game", "DrMelman",\
 "DutyFree", "HungryHippo", "Minigame_HotDurian", "RoP_MusicalChairs",\
 "Soccer"]
 
-levels = ["BraveNewWild", "ConvoyChase", "Credits", "Dam_Busters", \
-"FixThePlane", "IslandFever", "MartyRace", "Morts_Adventure",\
-"penguins", "penguins2", "Prepare2Launch_Plane", "Prepare2Launch",\
-"RitesOfPassage", "VolcanoRave", "Watercaves", "Waterhole",\
-"Wooing_Gloria"]
+deadends_levels = ["Credits", "Dam_Busters", "FixThePlane", "Waterhole"]
+
+levels = ["BraveNewWild", "ConvoyChase", "IslandFever",\
+"MartyRace", "Morts_Adventure", "penguins", "penguins2",\
+"Prepare2Launch_Plane", "Prepare2Launch", "RitesOfPassage",\
+"VolcanoRave", "Watercaves", "Wooing_Gloria"]
 
 manualoverrides = ["map", "title", "global"]
+
+if deadends == True:
+	levels.extend(deadends_levels)
+	golf_levels.extend(deadends_golf_levels)
+else:
+	manualoverrides.extend(deadends_levels)
+	manualoverrides.extend(deadends_golf_levels)
 
 if randomizeGolf == True:
 	levels.extend(golf_levels)
