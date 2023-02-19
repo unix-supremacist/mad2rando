@@ -154,3 +154,7 @@ cython_debug/
 #mad2
 Content/
 ContentOG/
+bld/
+cache/
+out/
+*.ini
