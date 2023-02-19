@@ -109,8 +109,6 @@ if monkeylesslevels == True:
 else:
 	blacklist.extend(boring_pool)
 
-levelscopied.extend(boring_pool)
-
 #Sort the pools so seeds are more stable
 campaign_pool.sort()
 levelscopied.sort()
@@ -165,11 +163,11 @@ minigame_pool.sort()
 
 #Copy campaign levels
 for level in campaign_pool:
-		x = random.randrange(0, len(levelscopied))
-		shutil.copy(contentog+streams+level+arc, content+streams+levelscopied[x]+arc)
-		shutil.copy(contentog+streams+level+bld, content+streams+levelscopied[x]+bld)
-		logger.info('Main Pool Level:'+level+':'+levelscopied[x])
-		levelscopied.pop(x)
+	x = random.randrange(0, len(levelscopied))
+	shutil.copy(contentog+streams+level+arc, content+streams+levelscopied[x]+arc)
+	shutil.copy(contentog+streams+level+bld, content+streams+levelscopied[x]+bld)
+	logger.info('Main Pool Level:'+level+':'+levelscopied[x])
+	levelscopied.pop(x)
 
 #Copy minigame levels
 if len(minigame_pool) != 0:
