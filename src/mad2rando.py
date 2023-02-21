@@ -15,7 +15,8 @@ config['DEFAULT'] = {	'seed': '0',
 						'sanity': 'True',
 						'randomizeMinigames': 'False',
 						'monkeylessLevels': 'True',
-						'hasDeadends': 'False'}
+						'hasDeadends': 'False',
+						'isDutyFreeAlwaysWTA': 'True'}
 
 if os.path.isfile(configname) == False:
 	with open(configname, 'w') as configfile:
@@ -28,6 +29,7 @@ sanity = json.loads(config['DEFAULT']['sanity'].lower())
 randomizeMinigames = json.loads(config['DEFAULT']['randomizeMinigames'].lower())
 monkeylesslevels = json.loads(config['DEFAULT']['monkeylesslevels'].lower())
 hasDeadends = json.loads(config['DEFAULT']['hasDeadends'].lower())
+isDutyFreeAlwaysWTA = json.loads(config['DEFAULT']['isDutyFreeAlwaysWTA'].lower())
 
 #Set basic vars
 content = "Content"
@@ -160,6 +162,12 @@ if len(minigame_pool) != 0:
 minigame_pool = [item for item in minigame_pool if item not in to_remove]
 minigame_pool.extend(to_add)
 minigame_pool.sort()
+
+if isDutyFreeAlwaysWTA == True:
+	levelscopied.remove("DutyFree")
+	campaign_pool.remove("BraveNewWild")
+	shutil.copy(contentog+streams+"BraveNewWild"+arc, content+streams+"DutyFree"+arc)
+	shutil.copy(contentog+streams+"BraveNewWild"+bld, content+streams+"DutyFree"+bld)
 
 #Copy campaign levels
 for level in campaign_pool:
