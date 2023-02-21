@@ -1,3 +1,4 @@
+#!/bin/sh
 VARDIR=var
 VERSION=$(cat $VARDIR/version)
 PYV=$(cat $VARDIR/pyv)
@@ -18,5 +19,6 @@ mkdir "$OUTDIR/" -p
 [ -d "$CACHEDIR/$PYF" ] && cp -r "$CACHEDIR/$PYF"/* "$BLDDIR/"
 [ -d src/ ] && cp -r src/* "$BLDDIR/"
 [ -f "$OUTDIR/$NAME-$VERSION.tar.lzma" ] && rm "$OUTDIR/$NAME-$VERSION.tar.lzma"
-[ -d "$BLDDIR/" ] && cd "$BLDDIR/" && tar cvf "../$OUTDIR/$NAME-$VERSION.tar" . > /dev/null && cd ..
+[ -f "$OUTDIR/$NAME-$VERSION.zip" ] && rm "$OUTDIR/$NAME-$VERSION.zip"
+[ -d "$BLDDIR/" ] && cd "$BLDDIR/" && tar cvf "../$OUTDIR/$NAME-$VERSION.tar" . > /dev/null && zip -qr "../$OUTDIR/$NAME-$VERSION.zip" . && cd ..
 [ -f "$OUTDIR/$NAME-$VERSION.tar" ] && lzma "$OUTDIR/$NAME-$VERSION.tar"
