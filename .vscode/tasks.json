@@ -4,7 +4,7 @@
 		{
 			"label": "run",
 			"type": "shell",
-			"command": "python src/mad2rando.py",
+			"command": "go run src/mad2rando.go",
 			"problemMatcher": [],
 			"group": {
 				"kind": "build",
