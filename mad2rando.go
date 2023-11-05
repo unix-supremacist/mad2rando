@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-    "log"
-    "os"
+	"log"
+	"os"
 	"io/ioutil"
 	"math/rand"
 	"time"
@@ -26,9 +26,9 @@ var dam_minigame bool
 func main(){
 	statusLabel := widget.NewLabel("Waiting to randomize.")
 
-    _, err := os.Stat("ContentOG")
-    if os.IsNotExist(err) {
-        statusLabel.SetText("ContentOG Folder does not exist, creating it.")
+	_, err := os.Stat("ContentOG")
+	if os.IsNotExist(err) {
+		statusLabel.SetText("ContentOG Folder does not exist, creating it.")
 		_, err := os.Stat("Content")
 		if !os.IsNotExist(err) {
 			eror(os.Mkdir("ContentOG", os.ModePerm))
@@ -37,12 +37,12 @@ func main(){
 		} else {
 			statusLabel.SetText("Content folder not found, is the rando installed in the game directory?")
 		}
-    }
+	}
 	
 	file, err := os.Create("spoiler.log")
 	if err != nil {
-        log.Fatal(err)
-    }
+		log.Fatal(err)
+	}
 	defer file.Close()
 	SpoilerLogger = log.New(file, "SPOILER: ", 0)
 
@@ -171,10 +171,10 @@ func pop(slice []string, toPop string) []string {
 }
 
 func contains(slice []string, str string) bool {
-    for _, str2 := range slice {
-        if str == str2 {
-            return true
-        }
-    }
-    return false
+	for _, str2 := range slice {
+		if str == str2 {
+			return true
+		}
+	}
+	return false
 }
